@@ -156,7 +156,7 @@ namespace ForexClicker
             }
             else
             {
-                this.Opacity = 0.7;
+                this.Opacity = 0.3;
                 p_setting.Dock = DockStyle.None;
                 p_setting.Width = 5;
                 p_setting.Location = new Point(-25, 0);
