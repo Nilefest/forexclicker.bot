@@ -1,0 +1,2 @@
+# forexclicker
+Bot for Forex
