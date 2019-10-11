@@ -24,3 +24,15 @@ C:\Users\user2\Desktop\ForexClicker\forexclicker\ForexClicker\obj\Debug\ForexCli
 C:\Users\user2\Desktop\ForexClicker\forexclicker\ForexClicker\obj\Debug\ForexClicker.csproj.GenerateResource.Cache
 C:\Users\user2\Desktop\ForexClicker\forexclicker\ForexClicker\obj\Debug\ForexClicker.exe
 C:\Users\user2\Desktop\ForexClicker\forexclicker\ForexClicker\obj\Debug\ForexClicker.pdb
+E:\Desktop\forexclicker\ForexClicker\bin\Debug\ForexClicker.exe.config
+E:\Desktop\forexclicker\ForexClicker\obj\Debug\ForexClicker.exe
+E:\Desktop\forexclicker\ForexClicker\obj\Debug\ForexClicker.pdb
+E:\Desktop\forexclicker\ForexClicker\bin\Debug\ForexClicker.exe
+E:\Desktop\forexclicker\ForexClicker\bin\Debug\ForexClicker.pdb
+E:\Desktop\forexclicker\ForexClicker\bin\Debug\Microsoft.VisualStudio.PerformanceTools.Automation.dll
+E:\Desktop\forexclicker\ForexClicker\bin\Debug\EnvDTE.dll
+E:\Desktop\forexclicker\ForexClicker\bin\Debug\stdole.dll
+E:\Desktop\forexclicker\ForexClicker\obj\Debug\ForexClicker.csprojResolveAssemblyReference.cache
+E:\Desktop\forexclicker\ForexClicker\obj\Debug\ForexClicker.FormMain.resources
+E:\Desktop\forexclicker\ForexClicker\obj\Debug\ForexClicker.Properties.Resources.resources
+E:\Desktop\forexclicker\ForexClicker\obj\Debug\ForexClicker.csproj.GenerateResource.Cache

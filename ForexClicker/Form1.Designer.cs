@@ -117,7 +117,7 @@
             this.l_lasttime.Name = "l_lasttime";
             this.l_lasttime.Size = new System.Drawing.Size(119, 39);
             this.l_lasttime.TabIndex = 4;
-            this.l_lasttime.Text = "1";
+            this.l_lasttime.Text = "--";
             this.l_lasttime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<SettingClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <gpos1>
+    <X>177</X>
+    <Y>117</Y>
+  </gpos1>
+  <gpos2>
+    <X>348</X>
+    <Y>165</Y>
+  </gpos2>
+  <bup>
+    <X>110</X>
+    <Y>471</Y>
+  </bup>
+  <bdown>
+    <X>126</X>
+    <Y>543</Y>
+  </bdown>
+  <period_min>55</period_min>
+  <type_period>2</type_period>
+  <colup>-14536358</colup>
+  <coldown>-15266035</coldown>
+</SettingClass>
