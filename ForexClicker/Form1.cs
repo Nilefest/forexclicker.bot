@@ -103,23 +103,34 @@ namespace ForexClicker
         #region Bot working
         private void b_start_Click(object sender, EventArgs e)
         {
-            timer_bot.Start();
+            if (set.type_period == 2)
+            {
+                timer_bot.Start();
+                return;
+            }
+            if (set.type_period == 0)
+                time_start_hms = DateTime.Now.Minute + 1;
+            if (set.type_period == 1)
+                time_start_hms = DateTime.Now.Hour + 1;
+            timer_start.Start();
         }
         private void b_stop_Click(object sender, EventArgs e)
         {
             timer_bot.Stop();
+            timer_start.Stop();
+            last_sec = set.period_min * 60;
         }
         private void timer_bot_Tick(object sender, EventArgs e)
         {
+            l_time.Text = DateTime.Now.ToLongTimeString();
             if (last_sec == 1)
             {
+                l_lasttime.BackColor = Color.Red;
                 botWorking();
-                SystemSounds.Beep.Play();
             }
             if (last_sec <= 0)
             {
-                last_sec = set.period_min * 60;
-                last_sec = 10;
+                last_sec = set.period_min * 60 - 1;
                 l_lasttime.BackColor = Color.White;
             }
             if(last_sec < 6)
@@ -129,9 +140,34 @@ namespace ForexClicker
             l_lasttime.Text = last_sec.ToString();
             last_sec--;
         }
+
         private void botWorking()
         {
+            Color color_find = scanPixel();
+            if (color_find == set.colup)
+                MakeClick(set.bup.X, set.bup.Y);
+            else if (color_find == set.coldown)
+                MakeClick(set.bdown.X, set.bdown.Y);
         }
+
+        private Color scanPixel()
+        {
+            Color col_find = Color.White;
+            for(int x = set.gpos1.X; x <= set.gpos2.X; x++)
+            {
+                for (int y = set.gpos1.Y; y <= set.gpos2.Y; y++)
+                {
+                    col_find = getPixelColorScreen(new Point(x, y));
+                    if(col_find == set.colup || col_find == set.coldown)
+                    {
+                        return col_find;
+                    }
+                }
+            }
+
+            return Color.White;
+        }
+
         #endregion
         #region Setting Timer
         private void num_p_ValueChanged(object sender, EventArgs e)
@@ -303,8 +339,20 @@ namespace ForexClicker
         [DllImport("user32")]
         public static extern int SetCursorPos(int x, int y);
 
+
         #endregion
 
-
+        int time_start_hms = 0;
+        private void timer_start_Tick(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            l_time.Text = now.ToLongTimeString();
+            if ((set.type_period == 0 && time_start_hms == now.Minute)
+                || (set.type_period == 1 && time_start_hms == now.Hour))
+            {
+                timer_bot.Start();
+                timer_start.Stop();
+            }
+        }
     }
 }

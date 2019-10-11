@@ -66,6 +66,8 @@
             this.timer_bot = new System.Windows.Forms.Timer(this.components);
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
+            this.timer_start = new System.Windows.Forms.Timer(this.components);
+            this.l_time = new System.Windows.Forms.Label();
             this.p_setting.SuspendLayout();
             this.gb_setwork.SuspendLayout();
             this.gb_setmore.SuspendLayout();
@@ -95,6 +97,7 @@
             // gb_setwork
             // 
             this.gb_setwork.BackColor = System.Drawing.Color.White;
+            this.gb_setwork.Controls.Add(this.l_time);
             this.gb_setwork.Controls.Add(this.l_lasttime);
             this.gb_setwork.Controls.Add(this.label5);
             this.gb_setwork.Controls.Add(this.b_stop);
@@ -110,12 +113,12 @@
             // l_lasttime
             // 
             this.l_lasttime.BackColor = System.Drawing.Color.White;
-            this.l_lasttime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.l_lasttime.Dock = System.Windows.Forms.DockStyle.Top;
             this.l_lasttime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.l_lasttime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_lasttime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.l_lasttime.Location = new System.Drawing.Point(124, 62);
             this.l_lasttime.Name = "l_lasttime";
-            this.l_lasttime.Size = new System.Drawing.Size(119, 39);
+            this.l_lasttime.Size = new System.Drawing.Size(119, 26);
             this.l_lasttime.TabIndex = 4;
             this.l_lasttime.Text = "--";
             this.l_lasttime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -573,6 +576,23 @@
             this.ofd.Filter = "XML Files (*.xml)|*.xml";
             this.ofd.Title = "Сохранить файл настроек";
             // 
+            // timer_start
+            // 
+            this.timer_start.Tick += new System.EventHandler(this.timer_start_Tick);
+            // 
+            // l_time
+            // 
+            this.l_time.BackColor = System.Drawing.Color.White;
+            this.l_time.Dock = System.Windows.Forms.DockStyle.Top;
+            this.l_time.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.l_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_time.Location = new System.Drawing.Point(124, 88);
+            this.l_time.Name = "l_time";
+            this.l_time.Size = new System.Drawing.Size(119, 13);
+            this.l_time.TabIndex = 5;
+            this.l_time.Text = "-- : --";
+            this.l_time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -639,6 +659,8 @@
         private System.Windows.Forms.Timer timer_bot;
         private System.Windows.Forms.SaveFileDialog sfd;
         private System.Windows.Forms.OpenFileDialog ofd;
+        private System.Windows.Forms.Timer timer_start;
+        private System.Windows.Forms.Label l_time;
     }
 }
 
