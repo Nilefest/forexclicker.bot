@@ -18,13 +18,17 @@ namespace ForexClicker
 
         SettingClass set = new SettingClass();
 
+        int time_start_hms = 0;
+
+        int n_bot_tick = 0;
+
         int last_sec = 0;
         bool is_open_set = false;
         settingType set_type;
         
         enum settingType
         {
-            colgup, colgdown, posg1, posg2, posbup, posbdown, setview
+            colgup, colgdown, posg1, posg2, posbup, posbdown, posbreload, setview
         };
         #endregion
 
@@ -92,6 +96,11 @@ namespace ForexClicker
             set_type = settingType.posbdown;
             SettingWinToggle();
         }
+        private void b_posbreload_Click(object sender, EventArgs e)
+        {
+            set_type = settingType.posbreload;
+            SettingWinToggle();
+        }
         #endregion
         #region View setting
         private void b_viewset_Click(object sender, EventArgs e)
@@ -103,22 +112,33 @@ namespace ForexClicker
         #region Bot working
         private void b_start_Click(object sender, EventArgs e)
         {
+            n_bot_tick = 0;
+            listv_logs.Items.Add("------------------");
+            last_sec = Convert.ToInt32(set.period_min * 60 - 1);
             if (set.type_period == 2)
             {
-                timer_bot.Start();
+                bot_start();
                 return;
             }
             if (set.type_period == 0)
+            {
                 time_start_hms = DateTime.Now.Minute + 1;
+            }
             if (set.type_period == 1)
+            {
                 time_start_hms = DateTime.Now.Hour + 1;
+            }
             timer_start.Start();
+            b_stop.Enabled = true;
+            b_start.Enabled = false;
         }
         private void b_stop_Click(object sender, EventArgs e)
         {
             timer_bot.Stop();
             timer_start.Stop();
-            last_sec = set.period_min * 60;
+            last_sec = Convert.ToInt32(set.period_min * 60);
+            b_start.Enabled = true;
+            b_stop.Enabled = false;
         }
         private void timer_bot_Tick(object sender, EventArgs e)
         {
@@ -128,43 +148,68 @@ namespace ForexClicker
                 l_lasttime.BackColor = Color.Red;
                 botWorking();
             }
+            if (last_sec == 5)
+            {
+                MakeClick(set.brepoad.X, set.brepoad.Y);
+            }
             if (last_sec <= 0)
             {
-                last_sec = set.period_min * 60 - 1;
+                last_sec = Convert.ToInt32(set.period_min * 60 - 1);
                 l_lasttime.BackColor = Color.White;
             }
-            if(last_sec < 6)
+            if(last_sec == 6)
             {
-                l_lasttime.BackColor = Color.Green;
+                l_lasttime.BackColor = Color.Yellow;
             }
             l_lasttime.Text = last_sec.ToString();
             last_sec--;
         }
-
         private void botWorking()
         {
+            string log_str = ++n_bot_tick + ". ";
             Color color_find = scanPixel();
             if (color_find == set.colup)
+            {
                 MakeClick(set.bup.X, set.bup.Y);
+                log_str += DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToLongTimeString() + " : UP";
+            }
             else if (color_find == set.coldown)
+            {
                 MakeClick(set.bdown.X, set.bdown.Y);
+                log_str += DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToLongTimeString() + " : DOWN";
+            }
+            else
+            {
+                log_str += "NONE";
+            }
+            listv_logs.Items.Add(log_str);
         }
 
         private Color scanPixel()
         {
             Color col_find = Color.White;
-            for(int x = set.gpos1.X; x <= set.gpos2.X; x++)
+            
+            for (int y = set.gpos1.Y; y <= set.gpos2.Y; y++)
             {
-                for (int y = set.gpos1.Y; y <= set.gpos2.Y; y++)
+                col_find = getPixelColorScreen(new Point(set.gpos1.X, y));
+                if (col_find == set.colup)
                 {
-                    col_find = getPixelColorScreen(new Point(x, y));
+                    return col_find;
+                }
+                if(col_find == set.coldown)
+                {
+                    return col_find;
+                }
+                /*for (int x = set.gpos1.X; x <= set.gpos2.X; x++)
+                {
+                    //MessageBox.Show(new Point(x, y).ToString());
+                    //col_find = getPixelColorScreen(new Point(x, y));
                     if(col_find == set.colup || col_find == set.coldown)
                     {
                         return col_find;
                     }
-                }
+                }/**/
             }
-
             return Color.White;
         }
 
@@ -172,7 +217,7 @@ namespace ForexClicker
         #region Setting Timer
         private void num_p_ValueChanged(object sender, EventArgs e)
         {
-            set.period_min = (int)num_p.Value;
+            set.period_min = (double)num_p.Value;
         }
         private void cb_typep_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -227,6 +272,9 @@ namespace ForexClicker
                     case settingType.posbdown:
                         set.bdown = p_screen;
                         break;
+                    case settingType.posbreload:
+                        set.brepoad = p_screen;
+                        break;
                     case settingType.setview:
                         SettingView();
                         MessageBox.Show(set.ToString());
@@ -264,16 +312,16 @@ namespace ForexClicker
             // Data refresh
             l_bdown.Text = set.bdown.ToString();
             l_bup.Text = set.bup.ToString();
+            l_breload.Text = set.brepoad.ToString();
             l_colgdown.Text = set.coldown.ToString();
             l_colgup.Text = set.colup.ToString();
 
             l_colgdown.BackColor = set.coldown;
             l_colgup.BackColor = set.colup;
 
-
             l_posg1.Text = set.gpos1.ToString();
             l_posg2.Text = set.gpos2.ToString();
-            num_p.Value = set.period_min;
+            num_p.Value = Convert.ToDecimal(set.period_min);
             cb_typep.SelectedIndex = set.type_period;
         }
         private void SettingView()
@@ -342,7 +390,6 @@ namespace ForexClicker
 
         #endregion
 
-        int time_start_hms = 0;
         private void timer_start_Tick(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
@@ -350,9 +397,23 @@ namespace ForexClicker
             if ((set.type_period == 0 && time_start_hms == now.Minute)
                 || (set.type_period == 1 && time_start_hms == now.Hour))
             {
-                timer_bot.Start();
-                timer_start.Stop();
+                bot_start();
             }
         }
+
+
+
+
+        private void bot_start()
+        {
+            timer_bot.Start();
+            timer_start.Stop();
+        }
+
+        private void b_logclear_Click(object sender, EventArgs e)
+        {
+            listv_logs.Items.Clear();
+        }
+
     }
 }

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.p_setting = new System.Windows.Forms.Panel();
             this.gb_setwork = new System.Windows.Forms.GroupBox();
+            this.l_time = new System.Windows.Forms.Label();
             this.l_lasttime = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.b_stop = new System.Windows.Forms.Button();
@@ -67,7 +68,12 @@
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.timer_start = new System.Windows.Forms.Timer(this.components);
-            this.l_time = new System.Windows.Forms.Label();
+            this.gb_logs = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.listv_logs = new System.Windows.Forms.ListBox();
+            this.b_logclear = new System.Windows.Forms.Button();
+            this.l_breload = new System.Windows.Forms.Label();
+            this.b_posbreload = new System.Windows.Forms.Button();
             this.p_setting.SuspendLayout();
             this.gb_setwork.SuspendLayout();
             this.gb_setmore.SuspendLayout();
@@ -77,21 +83,19 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_p)).BeginInit();
             this.gb_setbpos.SuspendLayout();
+            this.gb_logs.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // p_setting
             // 
             this.p_setting.BackColor = System.Drawing.Color.White;
-            this.p_setting.Controls.Add(this.gb_setwork);
-            this.p_setting.Controls.Add(this.gb_setmore);
-            this.p_setting.Controls.Add(this.gb_setgpos);
-            this.p_setting.Controls.Add(this.gb_setgcol);
-            this.p_setting.Controls.Add(this.gb_setperiod);
-            this.p_setting.Controls.Add(this.gb_setbpos);
+            this.p_setting.Controls.Add(this.gb_logs);
+            this.p_setting.Controls.Add(this.panel2);
             this.p_setting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.p_setting.Location = new System.Drawing.Point(0, 0);
             this.p_setting.Name = "p_setting";
-            this.p_setting.Size = new System.Drawing.Size(522, 354);
+            this.p_setting.Size = new System.Drawing.Size(827, 390);
             this.p_setting.TabIndex = 0;
             // 
             // gb_setwork
@@ -103,12 +107,25 @@
             this.gb_setwork.Controls.Add(this.b_stop);
             this.gb_setwork.Controls.Add(this.b_start);
             this.gb_setwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gb_setwork.Location = new System.Drawing.Point(264, 242);
+            this.gb_setwork.Location = new System.Drawing.Point(255, 274);
             this.gb_setwork.Name = "gb_setwork";
             this.gb_setwork.Size = new System.Drawing.Size(246, 104);
             this.gb_setwork.TabIndex = 3;
             this.gb_setwork.TabStop = false;
             this.gb_setwork.Text = "Работа";
+            // 
+            // l_time
+            // 
+            this.l_time.BackColor = System.Drawing.Color.White;
+            this.l_time.Dock = System.Windows.Forms.DockStyle.Top;
+            this.l_time.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.l_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_time.Location = new System.Drawing.Point(124, 88);
+            this.l_time.Name = "l_time";
+            this.l_time.Size = new System.Drawing.Size(119, 13);
+            this.l_time.TabIndex = 5;
+            this.l_time.Text = "-- : --";
+            this.l_time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // l_lasttime
             // 
@@ -140,6 +157,7 @@
             // 
             this.b_stop.BackColor = System.Drawing.Color.DarkGray;
             this.b_stop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.b_stop.Enabled = false;
             this.b_stop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.b_stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.b_stop.ForeColor = System.Drawing.Color.Maroon;
@@ -174,7 +192,7 @@
             this.gb_setmore.Controls.Add(this.label6);
             this.gb_setmore.Controls.Add(this.b_viewset);
             this.gb_setmore.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gb_setmore.Location = new System.Drawing.Point(12, 242);
+            this.gb_setmore.Location = new System.Drawing.Point(6, 274);
             this.gb_setmore.Name = "gb_setmore";
             this.gb_setmore.Size = new System.Drawing.Size(246, 104);
             this.gb_setmore.TabIndex = 2;
@@ -244,7 +262,7 @@
             this.gb_setgpos.Controls.Add(this.l_posg1);
             this.gb_setgpos.Controls.Add(this.b_posg1);
             this.gb_setgpos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gb_setgpos.Location = new System.Drawing.Point(264, 12);
+            this.gb_setgpos.Location = new System.Drawing.Point(255, 3);
             this.gb_setgpos.Name = "gb_setgpos";
             this.gb_setgpos.Size = new System.Drawing.Size(246, 104);
             this.gb_setgpos.TabIndex = 1;
@@ -313,7 +331,7 @@
             this.gb_setgcol.Controls.Add(this.l_colgup);
             this.gb_setgcol.Controls.Add(this.b_colgup);
             this.gb_setgcol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gb_setgcol.Location = new System.Drawing.Point(12, 12);
+            this.gb_setgcol.Location = new System.Drawing.Point(3, 3);
             this.gb_setgcol.Name = "gb_setgcol";
             this.gb_setgcol.Size = new System.Drawing.Size(246, 104);
             this.gb_setgcol.TabIndex = 0;
@@ -382,9 +400,9 @@
             this.gb_setperiod.Controls.Add(this.panel1);
             this.gb_setperiod.Controls.Add(this.label1);
             this.gb_setperiod.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gb_setperiod.Location = new System.Drawing.Point(264, 134);
+            this.gb_setperiod.Location = new System.Drawing.Point(255, 125);
             this.gb_setperiod.Name = "gb_setperiod";
-            this.gb_setperiod.Size = new System.Drawing.Size(246, 102);
+            this.gb_setperiod.Size = new System.Drawing.Size(246, 145);
             this.gb_setperiod.TabIndex = 0;
             this.gb_setperiod.TabStop = false;
             this.gb_setperiod.Text = "График работы";
@@ -434,7 +452,7 @@
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(101, 0);
+            this.label3.Location = new System.Drawing.Point(119, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 23);
             this.label3.TabIndex = 5;
@@ -444,8 +462,14 @@
             // num_p
             // 
             this.num_p.AutoSize = true;
+            this.num_p.DecimalPlaces = 2;
             this.num_p.Dock = System.Windows.Forms.DockStyle.Left;
             this.num_p.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.num_p.Increment = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
             this.num_p.Location = new System.Drawing.Point(48, 0);
             this.num_p.Maximum = new decimal(new int[] {
             10080,
@@ -456,10 +480,11 @@
             1,
             0,
             0,
-            0});
+            65536});
             this.num_p.Name = "num_p";
-            this.num_p.Size = new System.Drawing.Size(53, 20);
+            this.num_p.Size = new System.Drawing.Size(71, 20);
             this.num_p.TabIndex = 4;
+            this.num_p.ThousandsSeparator = true;
             this.num_p.Value = new decimal(new int[] {
             1,
             0,
@@ -494,17 +519,19 @@
             // gb_setbpos
             // 
             this.gb_setbpos.BackColor = System.Drawing.Color.White;
+            this.gb_setbpos.Controls.Add(this.l_breload);
+            this.gb_setbpos.Controls.Add(this.b_posbreload);
             this.gb_setbpos.Controls.Add(this.l_bdown);
             this.gb_setbpos.Controls.Add(this.b_posbdown);
             this.gb_setbpos.Controls.Add(this.l_bup);
             this.gb_setbpos.Controls.Add(this.b_posbup);
             this.gb_setbpos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gb_setbpos.Location = new System.Drawing.Point(12, 134);
+            this.gb_setbpos.Location = new System.Drawing.Point(3, 125);
             this.gb_setbpos.Name = "gb_setbpos";
-            this.gb_setbpos.Size = new System.Drawing.Size(246, 104);
+            this.gb_setbpos.Size = new System.Drawing.Size(246, 147);
             this.gb_setbpos.TabIndex = 0;
             this.gb_setbpos.TabStop = false;
-            this.gb_setbpos.Text = "Кнопки \"Повышения\" и \"Понижения\"";
+            this.gb_setbpos.Text = "Кнопки управления";
             // 
             // l_bdown
             // 
@@ -580,25 +607,91 @@
             // 
             this.timer_start.Tick += new System.EventHandler(this.timer_start_Tick);
             // 
-            // l_time
+            // gb_logs
             // 
-            this.l_time.BackColor = System.Drawing.Color.White;
-            this.l_time.Dock = System.Windows.Forms.DockStyle.Top;
-            this.l_time.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.l_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_time.Location = new System.Drawing.Point(124, 88);
-            this.l_time.Name = "l_time";
-            this.l_time.Size = new System.Drawing.Size(119, 13);
-            this.l_time.TabIndex = 5;
-            this.l_time.Text = "-- : --";
-            this.l_time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.gb_logs.BackColor = System.Drawing.Color.White;
+            this.gb_logs.Controls.Add(this.b_logclear);
+            this.gb_logs.Controls.Add(this.listv_logs);
+            this.gb_logs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gb_logs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gb_logs.Location = new System.Drawing.Point(507, 0);
+            this.gb_logs.Name = "gb_logs";
+            this.gb_logs.Size = new System.Drawing.Size(320, 390);
+            this.gb_logs.TabIndex = 4;
+            this.gb_logs.TabStop = false;
+            this.gb_logs.Text = "Логи";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.gb_setgcol);
+            this.panel2.Controls.Add(this.gb_setbpos);
+            this.panel2.Controls.Add(this.gb_setwork);
+            this.panel2.Controls.Add(this.gb_setperiod);
+            this.panel2.Controls.Add(this.gb_setmore);
+            this.panel2.Controls.Add(this.gb_setgpos);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(507, 390);
+            this.panel2.TabIndex = 5;
+            // 
+            // listv_logs
+            // 
+            this.listv_logs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listv_logs.FormattingEnabled = true;
+            this.listv_logs.Location = new System.Drawing.Point(3, 16);
+            this.listv_logs.Name = "listv_logs";
+            this.listv_logs.Size = new System.Drawing.Size(314, 371);
+            this.listv_logs.TabIndex = 3;
+            // 
+            // b_logclear
+            // 
+            this.b_logclear.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_logclear.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.b_logclear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.b_logclear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.b_logclear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.b_logclear.Location = new System.Drawing.Point(3, 364);
+            this.b_logclear.Name = "b_logclear";
+            this.b_logclear.Size = new System.Drawing.Size(314, 23);
+            this.b_logclear.TabIndex = 5;
+            this.b_logclear.Text = "Очистить логи";
+            this.b_logclear.UseVisualStyleBackColor = false;
+            this.b_logclear.Click += new System.EventHandler(this.b_logclear_Click);
+            // 
+            // l_breload
+            // 
+            this.l_breload.BackColor = System.Drawing.Color.White;
+            this.l_breload.Dock = System.Windows.Forms.DockStyle.Top;
+            this.l_breload.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.l_breload.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_breload.Location = new System.Drawing.Point(3, 125);
+            this.l_breload.Name = "l_breload";
+            this.l_breload.Size = new System.Drawing.Size(240, 20);
+            this.l_breload.TabIndex = 5;
+            this.l_breload.Text = "{0;0}";
+            this.l_breload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // b_posbreload
+            // 
+            this.b_posbreload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.b_posbreload.Dock = System.Windows.Forms.DockStyle.Top;
+            this.b_posbreload.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.b_posbreload.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.b_posbreload.Location = new System.Drawing.Point(3, 102);
+            this.b_posbreload.Name = "b_posbreload";
+            this.b_posbreload.Size = new System.Drawing.Size(240, 23);
+            this.b_posbreload.TabIndex = 4;
+            this.b_posbreload.Text = "Выбрать кнопку сброса";
+            this.b_posbreload.UseVisualStyleBackColor = false;
+            this.b_posbreload.Click += new System.EventHandler(this.b_posbreload_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(522, 354);
+            this.ClientSize = new System.Drawing.Size(827, 390);
             this.Controls.Add(this.p_setting);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -616,6 +709,8 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_p)).EndInit();
             this.gb_setbpos.ResumeLayout(false);
+            this.gb_logs.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -661,6 +756,12 @@
         private System.Windows.Forms.OpenFileDialog ofd;
         private System.Windows.Forms.Timer timer_start;
         private System.Windows.Forms.Label l_time;
+        private System.Windows.Forms.GroupBox gb_logs;
+        private System.Windows.Forms.Button b_logclear;
+        private System.Windows.Forms.ListBox listv_logs;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label l_breload;
+        private System.Windows.Forms.Button b_posbreload;
     }
 }
 

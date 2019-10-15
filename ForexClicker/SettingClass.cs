@@ -18,9 +18,10 @@ namespace ForexClicker
         // Positions Buttons Up / Down
         public Point bup = new Point(0, 0);
         public Point bdown = new Point(0, 0);
+        public Point brepoad = new Point(0, 0);
 
         // Time work
-        public int period_min = 1;
+        public double period_min = 1;
         public int type_period = 0;
 
 
@@ -48,7 +49,8 @@ namespace ForexClicker
             setting += "Color UP: " + col_up + "\n";
             setting += "Color DOWN: " + col_up + "\n\n";
             setting += "Position Button UP: " + bup + "\n";
-            setting += "Position Button DOWN: " + bdown + "\n\n";
+            setting += "Position Button DOWN: " + bdown + "";
+            setting += "Position Button RELOAD: " + brepoad + "\n\n";
             setting += "Graph ang. 1: " + gpos1 + "\n";
             setting += "Graph ang. 2: " + gpos2 + "\n\n";
             setting += "Period by min.: " + period_min + "\n";
