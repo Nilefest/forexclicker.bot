@@ -1,6 +1,9 @@
-# forexclicker
+# ForexClicker
 Bot for Forex
 
 ----
 
-Old simple project. Simple autoclicker.
+Old simple project.
+A simple autoclicker for a friend.
+
+**WARNING! Don't use it**
